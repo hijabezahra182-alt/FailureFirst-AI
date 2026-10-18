@@ -1,5 +1,4 @@
--
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 
 const API_URL = 'https://failure-first-ai-5y98.vercel.app';
@@ -542,7 +541,7 @@ function App() {
                     <p>{result.opportunity_priorities?.reasoning}</p>
                   </article>
                 </div>
-                <button className="button button-primary" type="button" onClick={() => setActive('failure')}>Explore full Failure Map -></button>
+                <button className="button button-primary" type="button" onClick={() => setActive('failure')}>Explore full Failure Map</button>
               </div>
             )}
           </div>
@@ -920,4 +919,5 @@ function App() {
 }
 
 export default App;
+
 
