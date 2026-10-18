@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-export default defineConfig({
-  base: '/FailureFirst-AI/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'github-pages' ? '/FailureFirst-AI/' : '/',
   plugins: [react()],
-})
+}))
