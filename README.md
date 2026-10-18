@@ -40,7 +40,33 @@ Never commit .env, API keys, or private credentials. Configure deployment enviro
 AI output can be inaccurate. Market claims should be independently verified. The tool does not guarantee business success.
 
 ## Screenshots
-Add screenshots of the working application before submission.
+
+## Product Screenshots
+
+### 1. Homepage
+![FailureFirst AI Homepage](screenshots/01-homepage.png)
+
+### 2. Venture Input
+![Venture Input](screenshots/02-venture-input.png)
+
+### 3. Analysis Overview
+![Analysis Overview](screenshots/03-analysis-overview.png)
+
+### 4. Risk Analysis
+![Risk Analysis](screenshots/04-risk-analysis.png)
+
+### 5. Failure Scenarios
+![Failure Scenarios](screenshots/05-failure-scenarios.png)
+
+### 6. Assumption Analysis
+![Assumption Analysis](screenshots/06-assumptions.png)
+
+### 7. Validation Experiments
+![Validation Experiments](screenshots/07-experiments.png)
+
+### 8. Recommended Action Plan
+![Recommended Action Plan](screenshots/08-action-plan.png)
+
 
 ## Project Contribution
 Project creator: Hijab Zahra. Document only the work and contributions actually completed.
