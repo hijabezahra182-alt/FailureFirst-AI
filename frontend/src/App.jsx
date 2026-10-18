@@ -413,7 +413,7 @@ function App() {
                 <h2>Make your next decision a better one.</h2>
                 <p>Turn an idea into testable assumptions, measurable experiments, and a plan grounded in what you actually learn.</p>
                 <div className="method-line">
-                  <span>Discover</span><i>-</i><span>Challenge</span><i>-</i><span>Test</span><i>-</i><span>Learn</span>
+                  <span>Discover</span><i> - </i><span>Challenge</span><i> - </i><span>Test</span><i> - </i><span>Learn</span>
                 </div>
               </div>
               <div className="metric-panel">
