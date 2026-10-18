@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 
-const API_URL = 'http://127.0.0.1:8002';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8002').replace(/\/$/, '');
 const STORAGE_KEY = 'failurefirst-workspace-v2';
 
 const emptyForm = {
@@ -58,7 +58,7 @@ function SectionTitle({ eyebrow, title, description }) {
 function EmptyState({ title, description, action }) {
   return (
     <div className="empty-state">
-      <span className="empty-mark">＋</span>
+      <span className="empty-mark">ï¼‹</span>
       <h3>{title}</h3>
       <p>{description}</p>
       {action}
@@ -395,7 +395,7 @@ function App() {
         {(error || notice) && (
           <div className={`message ${error ? 'message-error' : 'message-notice'}`} role="status">
             <span>{error || notice}</span>
-            <button type="button" onClick={() => { setError(''); setNotice(''); }} aria-label="Dismiss message">×</button>
+            <button type="button" onClick={() => { setError(''); setNotice(''); }} aria-label="Dismiss message">Ã—</button>
           </div>
         )}
 
@@ -413,12 +413,12 @@ function App() {
                 <h2>Make your next decision a better one.</h2>
                 <p>Turn an idea into testable assumptions, measurable experiments, and a plan grounded in what you actually learn.</p>
                 <div className="method-line">
-                  <span>Discover</span><i>→</i><span>Challenge</span><i>→</i><span>Test</span><i>→</i><span>Learn</span>
+                  <span>Discover</span><i>â†’</i><span>Challenge</span><i>â†’</i><span>Test</span><i>â†’</i><span>Learn</span>
                 </div>
               </div>
               <div className="metric-panel">
                 <div className="metric-label">DIRECTIONAL VIABILITY</div>
-                <div className="metric-number">{result ? `${result.viability_score}/100` : '—'}</div>
+                <div className="metric-number">{result ? `${result.viability_score}/100` : 'â€”'}</div>
                 <p>{result ? 'A heuristic assessment, not a probability of success.' : 'Run an analysis to assess your current assumptions.'}</p>
                 <div className="metric-divider" />
                 <div className="metric-row"><span>Experiments completed</span><strong>{completedExperiments}/{experimentList.length}</strong></div>
@@ -516,7 +516,7 @@ function App() {
               <div className="form-footer">
                 <p>AI-generated assessments are hypotheses until supported by evidence.</p>
                 <button className="button button-primary button-large" disabled={loading} type="submit">
-                  {loading ? 'Analyzing your venture…' : 'Analyze my venture ↗'}
+                  {loading ? 'Analyzing your ventureâ€¦' : 'Analyze my venture â†—'}
                 </button>
               </div>
             </form>
@@ -529,7 +529,7 @@ function App() {
                     <span className="eyebrow">EXECUTIVE ASSESSMENT</span>
                     <h3>{result.executive_summary}</h3>
                     <p>{result.score_explanation}</p>
-                    <Pill tone="pill-warning">Heuristic score — not a success probability</Pill>
+                    <Pill tone="pill-warning">Heuristic score â€” not a success probability</Pill>
                   </article>
                   <article className="report-card">
                     <span className="eyebrow">THE NEXT MOVE</span>
@@ -542,7 +542,7 @@ function App() {
                     <p>{result.opportunity_priorities?.reasoning}</p>
                   </article>
                 </div>
-                <button className="button button-primary" type="button" onClick={() => setActive('failure')}>Explore full Failure Map →</button>
+                <button className="button button-primary" type="button" onClick={() => setActive('failure')}>Explore full Failure Map â†’</button>
               </div>
             )}
           </div>
@@ -687,7 +687,7 @@ function App() {
                       </div>
                       <div className="list-card"><h4>Preparation</h4><TextList items={item.preparation_steps} /></div>
                       <div className="list-card"><h4>Execution steps</h4><TextList items={item.execution_steps} /></div>
-                      {item.sample_script && <div className="script-box"><span className="eyebrow">SAMPLE SCRIPT — ADAPT BEFORE USING</span><p>{item.sample_script}</p><button className="button button-secondary" type="button" onClick={() => navigator.clipboard?.writeText(item.sample_script).then(() => setNotice('Sample script copied.')).catch(() => setNotice('Copy failed; select and copy the text manually.'))}>Copy script</button></div>}
+                      {item.sample_script && <div className="script-box"><span className="eyebrow">SAMPLE SCRIPT â€” ADAPT BEFORE USING</span><p>{item.sample_script}</p><button className="button button-secondary" type="button" onClick={() => navigator.clipboard?.writeText(item.sample_script).then(() => setNotice('Sample script copied.')).catch(() => setNotice('Copy failed; select and copy the text manually.'))}>Copy script</button></div>}
                       <div className="report-grid interpretation-grid">
                         <div className="report-card"><h4>If positive</h4><p>{item.positive_interpretation}</p></div>
                         <div className="report-card"><h4>If negative</h4><p>{item.negative_interpretation}</p></div>
@@ -695,7 +695,7 @@ function App() {
                       </div>
                       <div className="list-card"><h4>Possible confounding factors</h4><TextList items={item.confounding_factors} /><p><strong>Next recommended action:</strong> {item.next_action}</p></div>
                       <div className="form-grid experiment-record">
-                        <label className="field field-wide">Actual results — what happened?
+                        <label className="field field-wide">Actual results â€” what happened?
                           <textarea value={record.actualResult} onChange={e => updateExperiment(index, 'actualResult', e.target.value)} rows={3} placeholder="Record observed numbers, responses, behavior, and dates. Do not enter planned outcomes as results." />
                         </label>
                         <label className="field field-wide">Your observations and notes
@@ -706,7 +706,7 @@ function App() {
                   );
                 })}
                 <div className="action-row">
-                  <button className="button button-primary" onClick={() => { setAssistantQuestion('Interpret my recorded experiment results, identify evidence gaps, and recommend the next test.'); setActive('assistant'); }} type="button">Prepare result interpretation →</button>
+                  <button className="button button-primary" onClick={() => { setAssistantQuestion('Interpret my recorded experiment results, identify evidence gaps, and recommend the next test.'); setActive('assistant'); }} type="button">Prepare result interpretation â†’</button>
                 </div>
               </>
             )}
@@ -715,7 +715,7 @@ function App() {
 
         {active === 'growth' && (
           <div className="page-content">
-            <SectionTitle eyebrow="04 / COMPETE & GROW" title="Growth Engine" description="Focus on a suitable position, a few acquisition channels, and a measurable next action—not every marketing tactic at once." />
+            <SectionTitle eyebrow="04 / COMPETE & GROW" title="Growth Engine" description="Focus on a suitable position, a few acquisition channels, and a measurable next actionâ€”not every marketing tactic at once." />
             {!result ? (
               <EmptyState title="Growth strategy not generated yet" description="Run your venture analysis to receive a strategy tailored to your business." action={<button className="button button-primary" onClick={() => setActive('command')} type="button">Create analysis</button>} />
             ) : (
@@ -757,7 +757,7 @@ function App() {
 
         {active === 'roadmap' && (
           <div className="page-content">
-            <SectionTitle eyebrow="05 / EXECUTION" title="Your 30 / 60 / 90-day roadmap" description="A working checklist—not a promise of revenue or growth. Tick off milestones only when you actually complete them." />
+            <SectionTitle eyebrow="05 / EXECUTION" title="Your 30 / 60 / 90-day roadmap" description="A working checklistâ€”not a promise of revenue or growth. Tick off milestones only when you actually complete them." />
             {!result ? (
               <EmptyState title="Roadmap not ready" description="Generate a business analysis first." action={<button className="button button-primary" onClick={() => setActive('command')} type="button">Create analysis</button>} />
             ) : (
@@ -863,7 +863,7 @@ function App() {
               <>
                 <div className="assistant-context">
                   <span className="eyebrow">CURRENT VENTURE</span>
-                  <h3>{form.idea.slice(0, 140)}{form.idea.length > 140 ? '…' : ''}</h3>
+                  <h3>{form.idea.slice(0, 140)}{form.idea.length > 140 ? 'â€¦' : ''}</h3>
                   <div className="context-tags"><Pill>{form.stage}</Pill><Pill>{form.target_country || 'Country not specified'}</Pill><Pill>{evidence.length} evidence entries</Pill></div>
                 </div>
                 <form className="form-panel assistant-form" onSubmit={askAssistant}>
@@ -878,7 +878,7 @@ function App() {
                       'Compare my recorded evidence with my original assumptions.',
                     ].map(question => <button key={question} className="suggestion-chip" type="button" onClick={() => setAssistantQuestion(question)}>{question}</button>)}
                   </div>
-                  <div className="form-footer"><p>Uses the current business report and locally recorded workspace data.</p><button className="button button-primary" disabled={assistantLoading} type="submit">{assistantLoading ? 'Thinking…' : 'Ask FailureFirst AI ↗'}</button></div>
+                  <div className="form-footer"><p>Uses the current business report and locally recorded workspace data.</p><button className="button button-primary" disabled={assistantLoading} type="submit">{assistantLoading ? 'Thinkingâ€¦' : 'Ask FailureFirst AI â†—'}</button></div>
                 </form>
 
                 {assistantAnswer && (
@@ -911,7 +911,7 @@ function App() {
         )}
 
         <footer className="app-footer">
-          <span>FAILUREFIRST AI · VENTURE INTELLIGENCE</span>
+          <span>FAILUREFIRST AI Â· VENTURE INTELLIGENCE</span>
           <span>Hypotheses are not evidence. Decisions improve when learning is recorded.</span>
         </footer>
       </main>
